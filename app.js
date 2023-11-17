@@ -1,5 +1,9 @@
-const _ = require('lodash');
+var http = require('http')
+var fs = require('fs')
 
-const items = [1,[2,[3,[4]]]];
-const newItems = _.flattenDeep(items);
-console.log(newItems);
+http
+  .createServer(function(req,res){
+    const text = fs.readFileSync('./dependencies/big.txt','utf8');
+    res.end(text);
+  })
+  .listen(5000)
